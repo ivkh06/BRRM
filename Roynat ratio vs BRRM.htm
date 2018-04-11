@@ -1,0 +1,364 @@
+﻿<!DOCTYPE HTML>
+<!-- saved from url=(0082)http://localhost:8888/notebooks/Untitled.ipynb -->
+<!DOCTYPE html PUBLIC "" ""><HTML><HEAD><META content="IE=11.0000" 
+http-equiv="X-UA-Compatible">
+     
+<META charset="utf-8">     <TITLE>Jupyter Notebook</TITLE>     <LINK href="/static/base/images/favicon.ico?v=30780f272ab4aac64aa073a841546240" 
+rel="shortcut icon" type="image/x-icon">     
+<META http-equiv="X-UA-Compatible" content="IE=edge">     <LINK href="Roynat%20ratio%20vs%20BRRM_files/jquery-ui.min.css" 
+rel="stylesheet" type="text/css">     <LINK href="Roynat%20ratio%20vs%20BRRM_files/jquery.typeahead.min.css" 
+rel="stylesheet" type="text/css">     
+<META name="viewport" content="width=device-width, initial-scale=1.0">         
+<SCRIPT src="Roynat%20ratio%20vs%20BRRM_files/MathJax.js" type="text/javascript" charset="utf-8"></SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+// MathJax disabled, set as null to distingish from *missing* MathJax,
+// where it will be undefined, and should prompt a dialog later.
+window.mathjax_url = "/static/components/MathJax/MathJax.js";
+</SCRIPT>
+ <LINK href="Roynat%20ratio%20vs%20BRRM_files/bootstrap-tour.min.css" rel="stylesheet" 
+type="text/css"> <LINK href="Roynat%20ratio%20vs%20BRRM_files/codemirror.css" 
+rel="stylesheet">     <LINK href="Roynat%20ratio%20vs%20BRRM_files/style.min.css" 
+rel="stylesheet" type="text/css">     <LINK href="Roynat%20ratio%20vs%20BRRM_files/override.css" 
+rel="stylesheet" type="text/css"> <LINK id="kernel-css" href="" rel="stylesheet" 
+type="text/css">     <LINK href="/custom/custom.css" rel="stylesheet" type="text/css"> 
+    
+<SCRIPT src="Roynat%20ratio%20vs%20BRRM_files/promise.min.js" type="text/javascript" charset="utf-8"></SCRIPT>
+     
+<SCRIPT src="Roynat%20ratio%20vs%20BRRM_files/require.js" type="text/javascript" charset="utf-8"></SCRIPT>
+     
+<SCRIPT>
+      require.config({
+          
+          urlArgs: "v=20180411162948",
+          
+          baseUrl: '/static/',
+          paths: {
+            'auth/js/main': 'auth/js/main.min',
+            custom : '/custom',
+            nbextensions : '/nbextensions',
+            kernelspecs : '/kernelspecs',
+            underscore : 'components/underscore/underscore-min',
+            backbone : 'components/backbone/backbone-min',
+            jquery: 'components/jquery/jquery.min',
+            bootstrap: 'components/bootstrap/js/bootstrap.min',
+            bootstraptour: 'components/bootstrap-tour/build/js/bootstrap-tour.min',
+            'jquery-ui': 'components/jquery-ui/ui/minified/jquery-ui.min',
+            moment: 'components/moment/moment',
+            codemirror: 'components/codemirror',
+            termjs: 'components/term.js/src/term',
+            typeahead: 'components/jquery-typeahead/dist/jquery.typeahead'
+          },
+	  map: { // for backward compatibility
+	    "*": {
+		"jqueryui": "jquery-ui",
+	    }
+	  },
+          shim: {
+            typeahead: {
+              deps: ["jquery"],
+              exports: "typeahead"
+            },
+            underscore: {
+              exports: '_'
+            },
+            backbone: {
+              deps: ["underscore", "jquery"],
+              exports: "Backbone"
+            },
+            bootstrap: {
+              deps: ["jquery"],
+              exports: "bootstrap"
+            },
+            bootstraptour: {
+              deps: ["bootstrap"],
+              exports: "Tour"
+            },
+            "jquery-ui": {
+              deps: ["jquery"],
+              exports: "$"
+            }
+          },
+          waitSeconds: 30,
+      });
+
+      require.config({
+          map: {
+              '*':{
+                'contents': 'services/contents',
+              }
+          }
+      });
+
+      define("bootstrap", function () {
+          return window.$;
+      });
+
+      define("jquery", function () {
+          return window.$;
+      });
+
+      define("jqueryui", function () {
+          return window.$;
+      });
+
+      define("jquery-ui", function () {
+          return window.$;
+      });
+      // error-catching custom.js shim.
+      define("custom", function (require, exports, module) {
+          try {
+              var custom = require('custom/custom');
+              console.debug('loaded custom.js');
+              return custom;
+          } catch (e) {
+              console.error("error loading custom.js", e);
+              return {};
+          }
+      })
+    </SCRIPT>
+         
+<META name="GENERATOR" content="MSHTML 11.00.9600.18953"></HEAD> 
+<BODY class="notebook_app " data-notebook-path="Untitled.ipynb" 
+data-notebook-name="Untitled.ipynb" data-ws-url="" data-base-url="/"><NOSCRIPT>  
+  &lt;div id='noscript'&gt;      Jupyter Notebook requires JavaScript.&lt;br&gt; 
+     Please enable it to proceed.  &lt;/div&gt; </NOSCRIPT> 
+<DIV id="header">
+<DIV class="container" id="header-container">
+<DIV class="nav navbar-brand pull-left" id="ipython_notebook"><A title="dashboard" 
+href="http://localhost:8888/tree"><IMG alt="Jupyter Notebook" src="Roynat%20ratio%20vs%20BRRM_files/logo.png"></A></DIV><SPAN 
+id="login_widget"></SPAN>       <SPAN class="pull-left save_widget" id="save_widget"><SPAN 
+class="filename" id="notebook_name"></SPAN>     <SPAN 
+class="checkpoint_status"></SPAN>     <SPAN class="autosave_status"></SPAN> 
+</SPAN> <SPAN id="kernel_logo_widget"><IMG class="current_kernel_logo" src="">   
+</SPAN>   </DIV>
+<DIV class="header-bar"></DIV>
+<DIV class="container" id="menubar-container">
+<DIV id="menubar">
+<DIV class="navbar navbar-default" id="menus" role="navigation">
+<DIV class="container-fluid"><BUTTON class="btn btn-default navbar-btn navbar-toggle" 
+type="button" data-toggle="collapse" data-target=".navbar-collapse"><I class="fa fa-bars"></I> 
+              <SPAN class="navbar-text">Menu</SPAN>             </BUTTON>        
+     
+<P class="navbar-text indicator_area" id="kernel_indicator"><SPAN class="kernel_indicator_name">Kernel</SPAN> 
+              <I id="kernel_indicator_icon"></I>             </P><I title="This notebook is read-only" 
+class="navbar-text" id="readonly-indicator"><SPAN class="fa-stack"><I class="fa fa-save fa-stack-1x"></I> 
+                    <I class="fa fa-ban fa-stack-2x text-danger"></I>            
+     </SPAN>             </I>             <I class="navbar-text" id="modal_indicator"></I> 
+            <SPAN id="notification_area"></SPAN>             
+<DIV class="navbar-collapse collapse">
+<UL class="nav navbar-nav">
+  <LI class="dropdown"><A class="dropdown-toggle" href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#" 
+  data-toggle="dropdown">File</A>
+  <UL class="dropdown-menu" id="file_menu">
+    <LI class="dropdown-submenu" id="new_notebook"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">New 
+    Notebook</A>
+    <UL class="dropdown-menu" id="menu-new-notebook-submenu"></UL></LI>
+    <LI title="Opens a new window with the Dashboard view" id="open_notebook"><A 
+    href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Open...</A></LI><!-- <hr/> --> 
+                            
+    <LI class="divider"></LI>
+    <LI title="Open a copy of this notebook's contents and start a new kernel" 
+    id="copy_notebook"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Make 
+    a Copy...</A></LI>
+    <LI id="rename_notebook"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Rename...</A></LI>
+    <LI id="save_checkpoint"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Save 
+    and Checkpoint</A></LI><!-- <hr/> -->                         
+    <LI class="divider"></LI>
+    <LI class="dropdown-submenu" id="restore_checkpoint"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Revert 
+    to Checkpoint</A>
+    <UL class="dropdown-menu">
+      <LI><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#"></A></LI>
+      <LI><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#"></A></LI>
+      <LI><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#"></A></LI>
+      <LI><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#"></A></LI>
+      <LI><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#"></A></LI></UL></LI>
+    <LI class="divider"></LI>
+    <LI id="print_preview"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Print 
+    Preview</A></LI>
+    <LI class="dropdown-submenu"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Download 
+    as</A>
+    <UL class="dropdown-menu">
+      <LI id="download_ipynb"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Notebook 
+      (.ipynb)</A></LI>
+      <LI id="download_script"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Script</A></LI>
+      <LI id="download_html"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">HTML 
+      (.html)</A></LI>
+      <LI id="download_markdown"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Markdown 
+      (.md)</A></LI>
+      <LI id="download_rst"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">reST 
+      (.rst)</A></LI>
+      <LI id="download_pdf"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">PDF 
+      via LaTeX (.pdf)</A></LI></UL></LI>
+    <LI class="divider"></LI>
+    <LI title="Trust the output of this notebook" id="trust_notebook"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Trust 
+    Notebook</A></LI>
+    <LI class="divider"></LI>
+    <LI title="Shutdown this notebook's kernel, and close this window" id="kill_and_exit"><A 
+    href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Close 
+    and Halt</A></LI></UL></LI>
+  <LI class="dropdown"><A class="dropdown-toggle" href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#" 
+  data-toggle="dropdown">Edit</A>
+  <UL class="dropdown-menu" id="edit_menu">
+    <LI id="cut_cell"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Cut 
+    Cells</A></LI>
+    <LI id="copy_cell"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Copy 
+    Cells</A></LI>
+    <LI class="disabled" id="paste_cell_above"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Paste 
+    Cells Above</A></LI>
+    <LI class="disabled" id="paste_cell_below"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Paste 
+    Cells Below</A></LI>
+    <LI class="disabled" id="paste_cell_replace"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Paste 
+    Cells &amp; Replace</A></LI>
+    <LI id="delete_cell"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Delete 
+    Cells</A></LI>
+    <LI class="disabled" id="undelete_cell"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Undo 
+    Delete Cells</A></LI>
+    <LI class="divider"></LI>
+    <LI id="split_cell"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Split 
+    Cell</A></LI>
+    <LI id="merge_cell_above"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Merge 
+    Cell Above</A></LI>
+    <LI id="merge_cell_below"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Merge 
+    Cell Below</A></LI>
+    <LI class="divider"></LI>
+    <LI id="move_cell_up"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Move 
+    Cell Up</A></LI>
+    <LI id="move_cell_down"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Move 
+    Cell Down</A></LI>
+    <LI class="divider"></LI>
+    <LI id="edit_nb_metadata"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Edit 
+    Notebook Metadata</A></LI>
+    <LI class="divider"></LI>
+    <LI id="find_and_replace"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#"> 
+    Find and Replace </A></LI></UL></LI>
+  <LI class="dropdown"><A class="dropdown-toggle" href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#" 
+  data-toggle="dropdown">View</A>
+  <UL class="dropdown-menu" id="view_menu">
+    <LI title="Show/Hide the logo and notebook title (above menu bar)" id="toggle_header"><A 
+    href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Toggle 
+    Header</A></LI>
+    <LI title="Show/Hide the action icons (below menu bar)" 
+    id="toggle_toolbar"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Toggle 
+    Toolbar</A></LI>
+    <LI class="dropdown-submenu" id="menu-cell-toolbar"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Cell 
+    Toolbar</A>
+    <UL class="dropdown-menu" id="menu-cell-toolbar-submenu"></UL></LI></UL></LI>
+  <LI class="dropdown"><A class="dropdown-toggle" href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#" 
+  data-toggle="dropdown">Insert</A>
+  <UL class="dropdown-menu" id="insert_menu">
+    <LI title="Insert an empty Code cell above the currently active cell" id="insert_cell_above"><A 
+    href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Insert 
+    Cell Above</A></LI>
+    <LI title="Insert an empty Code cell below the currently active cell" id="insert_cell_below"><A 
+    href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Insert 
+    Cell Below</A></LI></UL></LI>
+  <LI class="dropdown"><A class="dropdown-toggle" href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#" 
+  data-toggle="dropdown">Cell</A>
+  <UL class="dropdown-menu" id="cell_menu">
+    <LI title="Run this cell, and move cursor to the next one" id="run_cell"><A 
+    href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Run 
+    Cells</A></LI>
+    <LI title="Run this cell, select below" id="run_cell_select_below"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Run 
+    Cells and Select Below</A></LI>
+    <LI title="Run this cell, insert below" id="run_cell_insert_below"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Run 
+    Cells and Insert Below</A></LI>
+    <LI title="Run all cells in the notebook" id="run_all_cells"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Run 
+    All</A></LI>
+    <LI title="Run all cells above (but not including) this cell" id="run_all_cells_above"><A 
+    href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Run 
+    All Above</A></LI>
+    <LI title="Run this cell and all cells below it" id="run_all_cells_below"><A 
+    href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Run 
+    All Below</A></LI>
+    <LI class="divider"></LI>
+    <LI title="All cells in the notebook have a cell type. By default, new cells are created as 'Code' cells" 
+    class="dropdown-submenu" id="change_cell_type"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Cell 
+    Type</A>
+    <UL class="dropdown-menu">
+      <LI title="Contents will be sent to the kernel for execution, and output will display in the footer of cell" 
+      id="to_code"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Code</A></LI>
+      <LI title="Contents will be rendered as HTML and serve as explanatory text" 
+      id="to_markdown"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Markdown</A></LI>
+      <LI title="Contents will pass through nbconvert unmodified" id="to_raw"><A 
+      href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Raw 
+      NBConvert</A></LI></UL></LI>
+    <LI class="divider"></LI>
+    <LI class="dropdown-submenu" id="current_outputs"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Current 
+    Outputs</A>
+    <UL class="dropdown-menu">
+      <LI title="Hide/Show the output of the current cell" id="toggle_current_output"><A 
+      href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Toggle</A></LI>
+      <LI title="Scroll the output of the current cell" id="toggle_current_output_scroll"><A 
+      href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Toggle 
+      Scrolling</A></LI>
+      <LI title="Clear the output of the current cell" 
+      id="clear_current_output"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Clear</A></LI></UL></LI>
+    <LI class="dropdown-submenu" id="all_outputs"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">All 
+    Output</A>
+    <UL class="dropdown-menu">
+      <LI title="Hide/Show the output of all cells" id="toggle_all_output"><A 
+      href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Toggle</A></LI>
+      <LI title="Scroll the output of all cells" 
+      id="toggle_all_output_scroll"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Toggle 
+      Scrolling</A></LI>
+      <LI title="Clear the output of all cells" id="clear_all_output"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Clear</A></LI></UL></LI></UL></LI>
+  <LI class="dropdown"><A class="dropdown-toggle" href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#" 
+  data-toggle="dropdown">Kernel</A>
+  <UL class="dropdown-menu" id="kernel_menu">
+    <LI title="Send KeyboardInterrupt (CTRL-C) to the Kernel" id="int_kernel"><A 
+    href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Interrupt</A></LI>
+    <LI title="Restart the Kernel" id="restart_kernel"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Restart</A></LI>
+    <LI title="Restart the Kernel and clear all output" id="restart_clear_output"><A 
+    href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Restart 
+    &amp; Clear Output</A></LI>
+    <LI title="Restart the Kernel and re-run the notebook" 
+    id="restart_run_all"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Restart 
+    &amp; Run All</A></LI>
+    <LI title="Reconnect to the Kernel" id="reconnect_kernel"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Reconnect</A></LI>
+    <LI class="divider"></LI>
+    <LI class="dropdown-submenu" id="menu-change-kernel"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Change 
+    kernel</A>
+    <UL class="dropdown-menu" id="menu-change-kernel-submenu"></UL></LI></UL></LI>
+  <LI class="dropdown"><A class="dropdown-toggle" href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#" 
+  data-toggle="dropdown">Help</A>
+  <UL class="dropdown-menu" id="help_menu">
+    <LI title="A quick tour of the notebook user interface" 
+    id="notebook_tour"><A href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">User 
+    Interface Tour</A></LI>
+    <LI title="Opens a tooltip with all keyboard shortcuts" id="keyboard_shortcuts"><A 
+    href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">Keyboard 
+    Shortcuts</A></LI>
+    <LI class="divider"></LI>
+    <LI><A title="Opens in a new window" href="http://nbviewer.ipython.org/github/ipython/ipython/blob/3.x/examples/Notebook/Index.ipynb" 
+    target="_blank" rel="noreferrer"><I class="fa fa-external-link menu-icon pull-right"></I> 
+                                                                   Notebook Help 
+                                    </A></LI>
+    <LI><A title="Opens in a new window" href="https://help.github.com/articles/markdown-basics/" 
+    target="_blank" rel="noreferrer"><I class="fa fa-external-link menu-icon pull-right"></I> 
+                                                                   Markdown      
+                               </A></LI>
+    <LI class="divider"></LI>
+    <LI title="About Jupyter Notebook"><A id="notebook_about" href="http://localhost:8888/notebooks/Untitled.ipynb?kernel_name=conda-env-Anaconda33-py#">About</A></LI></UL></LI></UL></DIV></DIV></DIV></DIV>
+<DIV class="navbar" id="maintoolbar">
+<DIV class="toolbar-inner navbar-inner navbar-nobg">
+<DIV class="container" id="maintoolbar-container"></DIV></DIV></DIV></DIV>
+<DIV class="lower-header-bar"></DIV></DIV>
+<DIV id="site">
+<DIV id="ipython-main-app">
+<DIV id="notebook_panel">
+<DIV id="notebook"></DIV>
+<DIV class="ipython_tooltip" id="tooltip" 
+style="display: none;"></DIV></DIV></DIV></DIV>
+<DIV id="pager">
+<DIV id="pager-contents">
+<DIV class="container" id="pager-container"></DIV></DIV>
+<DIV id="pager-button-area"></DIV></DIV>
+<SCRIPT type="text/javascript">
+    sys_info = {"notebook_version": "4.2.3", "sys_platform": "win32", "commit_source": "", "sys_executable": "C:\\Users\\s2286066\\AppData\\Local\\Continuum\\Anaconda33\\python.exe", "platform": "Windows-7-6.1.7601-SP1", "commit_hash": "", "os_name": "nt", "default_encoding": "cp850", "notebook_path": "C:\\Users\\s2286066\\AppData\\Local\\Continuum\\Anaconda33\\lib\\site-packages\\notebook", "sys_version": "3.5.2 |Anaconda custom (32-bit)| (default, Jul  5 2016, 11:45:57) [MSC v.1900 32 bit (Intel)]"};
+</SCRIPT>
+ 
+<SCRIPT src="Roynat%20ratio%20vs%20BRRM_files/encoding.js" charset="utf-8"></SCRIPT>
+     
+<SCRIPT src="Roynat%20ratio%20vs%20BRRM_files/main.min.js" type="text/javascript" charset="utf-8"></SCRIPT>
+ </BODY></HTML>

@@ -23,17 +23,17 @@ def remove_out(m,temp):
 os.chdir('M:\\Data\\IRM\IFRS 9 Proxy Replacement Project\\Roynat Segment\\Data\\BRRM')
 m=10  # the number of interquartile ranges used for the detection of outliers
 
-tp_1 = pd.read_csv('dataset_from_Roynat.csv', skipinitialspace=True)  
+tp_1 = pd.read_csv('dataset_from_Roynat.csv', skipinitialspace=True, encoding="ISO-8859-1" )  
 #tp_1.info()
 hed1=list(tp_1.columns.values)
 #tp_1.describe()
 tp_r=tp_1[hed1[4:15]]
-#tp_r.info()
+tp_r.info()
 hed=list(tp_r.columns.values)
 #printing histogram for values
 for i in range (0,11):
     plt.figure(figsize=(7, 4))
-    temp=tp[hed[i]][np.isfinite(tp[hed[i]])]
+    temp=tp_r[hed[i]][np.isfinite(tp_r[hed[i]])]
     short,percent_out=remove_out(m,temp)
     plt.hist(short, bins=25)
     plt.grid(True)
@@ -53,9 +53,11 @@ print (view2)
 #   increasing the size by 1,000  to be comparable with BRRM dataset
 tp_r[hed[6]]=tp_r[hed[6]]*1000
 
-
+tp_r[hed[i]]
 
 tp_b = pd.read_csv('BRRM Calibration Data.csv', skipinitialspace=True)  
+tp_b.info()
+hed_b=list(tp_b.columns.values)
 for i in range (0,11):
     plt.figure(figsize=(7, 4))
     #Roynat dataset
@@ -63,7 +65,7 @@ for i in range (0,11):
     leng=len(temp)    
     short_r,percent_out1=remove_out(m,temp)  #remiving outliers and recording the percent of removed values
     # BBRM dataset
-    temp=tp_b[hed[i]][np.isfinite(tp_b[hed[i]])]
+    temp=tp_b[hed_b[i]][np.isfinite(tp_b[hed_b[i]])]
     short_b,percent_out2=remove_out(m,temp)
     # selectiog subset of BBRM data with the same length as Roynat
     short_B=np.random.choice(short_b, size=leng, replace=True, p=None)     
